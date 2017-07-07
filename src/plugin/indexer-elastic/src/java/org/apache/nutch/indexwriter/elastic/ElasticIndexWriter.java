@@ -17,8 +17,6 @@
 
 package org.apache.nutch.indexwriter.elastic;
 
-import static org.elasticsearch.node.NodeBuilder.nodeBuilder;
-
 import java.lang.invoke.MethodHandles;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -45,6 +43,7 @@ import org.elasticsearch.common.unit.ByteSizeValue;
 import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.elasticsearch.node.Node;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -106,7 +105,7 @@ public class ElasticIndexWriter implements IndexWriter {
     String[] hosts = conf.getStrings(ElasticConstants.HOSTS);
     int port = conf.getInt(ElasticConstants.PORT, DEFAULT_PORT);
 
-    Settings.Builder settingsBuilder = Settings.settingsBuilder();
+    Settings.Builder settingsBuilder = Settings.builder();
 
     BufferedReader reader = new BufferedReader(
         conf.getConfResourceAsReader("elasticsearch.conf"));
@@ -131,16 +130,10 @@ public class ElasticIndexWriter implements IndexWriter {
 
     Client client = null;
 
-    // Prefer TransportClient
-    if (hosts != null && port > 1) {
-      TransportClient transportClient = TransportClient.builder().settings(settings).build();
-      for (String host: hosts)
-        transportClient.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(host), port));
-      client = transportClient;
-    } else if (clusterName != null) {
-      node = nodeBuilder().settings(settings).client(true).node();
-      client = node.client();
-    }
+    TransportClient transportClient = new PreBuiltTransportClient(settings);
+    for (String host: hosts)
+      transportClient.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(host), port));
+    client = transportClient;
 
     return client;
   }
