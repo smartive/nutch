@@ -95,7 +95,7 @@
      <library name="nekohtml-1.9.22.jar">
        <export name="*"/>
      </library>
-     <library name="netty-3.5.2.Final.jar">
+     <library name="netty-4.1.6.Final.jar">
        <export name="*"/>
      </library>
      <library name="operadriver-1.5.jar">

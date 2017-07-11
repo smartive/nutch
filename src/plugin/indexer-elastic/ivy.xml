@@ -42,6 +42,15 @@
         <dependency org="org.apache.logging.log4j" name="log4j-core" rev="2.7" />
         <dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.8.1"/>
         <dependency org="io.netty" name="netty-all" rev="4.1.6.Final"/>
+
+        <dependency org="com.carrotsearch" name="hppc" rev="0.7.1"/>
+        <dependency org="org.apache.lucene" name="lucene-core" rev="6.5.0"/>
+        <dependency org="org.apache.lucene" name="lucene-queries" rev="6.5.0"/>
+        <dependency org="org.apache.lucene" name="lucene-highlighter" rev="6.5.0"/>
+        <dependency org="org.apache.lucene" name="lucene-join" rev="6.5.0"/>
+        <dependency org="org.apache.lucene" name="lucene-queryparser" rev="6.5.0"/>
+        <dependency org="org.apache.lucene" name="lucene-spatial" rev="6.5.0"/>
+        <dependency org="org.apache.lucene" name="lucene-sandbox" rev="6.5.0"/>
   </dependencies>
   
 </ivy-module>
