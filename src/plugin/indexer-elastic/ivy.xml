@@ -38,10 +38,11 @@
   <dependencies>
         <dependency org="org.elasticsearch" name="elasticsearch" rev="5.4.0" conf="*->default" />
         <dependency org="org.elasticsearch.client" name="transport" rev="5.4.0"/>
+        <dependency org="org.elasticsearch.plugin" name="transport-netty3-client" rev="5.4.0"/>
         <dependency org="org.apache.logging.log4j" name="log4j-api" rev="2.7" />
         <dependency org="org.apache.logging.log4j" name="log4j-core" rev="2.7" />
         <dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.8.1"/>
-        <dependency org="io.netty" name="netty-all" rev="4.1.6.Final"/>
+        <dependency org="io.netty" name="netty" rev="3.10.6.Final"/>
 
         <dependency org="com.carrotsearch" name="hppc" rev="0.7.1"/>
         <dependency org="org.apache.lucene" name="lucene-core" rev="6.5.0"/>
